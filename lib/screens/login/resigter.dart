@@ -1,5 +1,6 @@
 import 'package:du_an_fashion/screens/home/home.dart';
 import 'package:du_an_fashion/screens/login/login.dart';
+import 'package:du_an_fashion/screens/menu/menu.dart';
 import 'package:flutter/material.dart';
 import 'package:du_an_fashion/consts.dart';
 import 'package:flutter_svg/flutter_svg.dart';
@@ -25,6 +26,8 @@ class _ResigterState extends State<Resigter> {
   }
   TextEditingController email = TextEditingController();
   TextEditingController password = TextEditingController();
+
+
   @override
   Widget build(BuildContext context) {
 
@@ -39,7 +42,7 @@ class _ResigterState extends State<Resigter> {
         );
         Navigator.push(
             context,
-            MaterialPageRoute(builder: (context) => Home())
+            MaterialPageRoute(builder: (context) => Menu())
         );
       } on FirebaseAuthException catch (e) {
         if (e.code == 'weak-password') {

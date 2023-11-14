@@ -1,5 +1,6 @@
-import 'package:du_an_fashion/screens/home/home.dart';
+
 import 'package:du_an_fashion/screens/login/resigter.dart';
+import 'package:du_an_fashion/screens/menu/menu.dart';
 import 'package:flutter/material.dart';
 import 'package:du_an_fashion/consts.dart';
 import 'package:flutter_svg/flutter_svg.dart';
@@ -24,6 +25,7 @@ class _LoginPageState extends State<LoginPage> {
   }
   TextEditingController email = TextEditingController();
   TextEditingController password = TextEditingController();
+  List<String> adminUser = ['thanh2003@gmail.com'];
   @override
   Widget build(BuildContext context) {
     Size size = MediaQuery.of(context).size; // lấy kích thước thiết bị
@@ -35,18 +37,23 @@ class _LoginPageState extends State<LoginPage> {
             email: email,
             password: password
         );
-        Navigator.push(
-            context,
-            MaterialPageRoute(builder: (context) => Home())
-        );
+          Navigator.push(
+              context,
+              MaterialPageRoute(builder: (context) => Menu()
+              ),
+          );
       } on FirebaseAuthException catch (e) {
+        print(e);
         if (e.code == 'user-not-found') {
-          _showSnackBar(context, 'Tên đăng nhập không đúng');
+         _showSnackBar(context, 'Email không tồn tại');
         } else if (e.code == 'wrong-password') {
-          _showSnackBar(context, 'Mật khẩu không chính xác');
+          _showSnackBar(context, 'Mật khẩu không đúng');
         }
+      }catch(e){
+        print(e);
       }
     }
+
 
     return Scaffold(
       body: Container(
